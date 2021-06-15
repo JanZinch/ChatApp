@@ -22,6 +22,8 @@ public class MessagesListActivity extends AppCompatActivity {
     private LinkedList<UserMessage> _messages = null;
     private RecyclerView _recyclerView = null;
 
+    private MessagesListAdapter _adapter = null;
+
     public static User currentUser = null;
 
     public static MessagesListActivity instance = null;
@@ -30,14 +32,17 @@ public class MessagesListActivity extends AppCompatActivity {
     private Button _sendButton = null;
     private EditText _writingArea = null;
 
+
+    protected void InitMessageListView(){
+
+        _adapter = new MessagesListAdapter(this, _messages);
+        _recyclerView.setAdapter(_adapter);
+    }
+
     protected void UpdateMessageListView(){
 
-        UserMessage[] buffer = new UserMessage[_messages.size()];
-        for (int i = 0; i < _messages.size(); i++) buffer[i] = _messages.get(i);
-
-        MessagesListAdapter adapter = new MessagesListAdapter(this, buffer);
-        _recyclerView.setAdapter(adapter);
-        _recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+        _adapter.notifyDataSetChanged();
+        _recyclerView.smoothScrollToPosition(_adapter.getItemCount() - 1);
     }
 
     protected void ReadMessagesFromDatabase(){
@@ -51,15 +56,11 @@ public class MessagesListActivity extends AppCompatActivity {
 
         try{
 
-            //UserMessage message = _messages.getLast();
-
             AppResources.dbRef = AppResources.database.getReference("message").push();
-
-            AppResources.dbRef.child("owner").setValue(message.owner);
-            AppResources.dbRef.child("avatarUri").setValue(message.avatarUri);
-            AppResources.dbRef.child("text").setValue(message.text);
-
-
+            AppResources.dbRef.setValue(message);
+            //AppResources.dbRef.child("owner").setValue(message.owner);
+            //AppResources.dbRef.child("avatarUri").setValue(message.avatarUri);
+            //AppResources.dbRef.child("text").setValue(message.text);
             callback.OnCallback(true);
         }
         catch (Exception ex){
@@ -97,11 +98,27 @@ public class MessagesListActivity extends AppCompatActivity {
             return;
         }
 
-        AppResources.dbRef = AppResources.database.getReference("message");
-        _messages = new LinkedList<>();
-        //_messages.addLast(new UserMessage(currentUser.name, currentUser.avatar, "Test message"));
+        try{
 
-        //UpdateMessageListView();
+            AppResources.dbRef = AppResources.database.getReference("message");
+            _messages = new LinkedList<>();
+
+
+            InitMessageListView();
+
+
+        }
+        catch (Exception ex){
+
+            Debug.Log(ex.getMessage());
+
+        }
+
+
+
+
+
+
 
         _sendButton.setOnClickListener(v -> {
 
@@ -117,16 +134,12 @@ public class MessagesListActivity extends AppCompatActivity {
             }
             else {
 
-                //_messages.addLast(new UserMessage(currentUser.name, currentUser.avatar, writtenText));
-                //UpdateMessageListView();
-
                 WriteMessageToDatabase(new UserMessage(currentUser.name, currentUser.avatar, writtenText), result -> {
 
-                    if(result){
+                    if (!result){
 
-                        Debug.Log("YEAS!");
+                        Toast.makeText(getApplicationContext(), "Error! Message not sent.", Toast.LENGTH_SHORT).show();
                     }
-
                 });
 
                 _writingArea.setText("");
@@ -173,10 +186,5 @@ public class MessagesListActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-        //UserMessage[] umsg = _messages.
     }
 }

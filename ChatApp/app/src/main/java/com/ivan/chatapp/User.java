@@ -2,6 +2,9 @@ package com.ivan.chatapp;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class User {
 
     public final String name;

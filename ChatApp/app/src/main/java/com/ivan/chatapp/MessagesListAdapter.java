@@ -12,10 +12,12 @@ import com.bumptech.glide.Glide;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.LinkedList;
+
 public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapter.ViewHolder> {
 
 
-    protected UserMessage[] _messages;
+    protected LinkedList<UserMessage> _messages;
     protected Context _context;
 
 
@@ -26,7 +28,7 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
         _messages = null;
     }
 
-    public MessagesListAdapter(Context context, UserMessage[] messages) {
+    public MessagesListAdapter(Context context, LinkedList<UserMessage> messages) {
 
         _context = context;
         _messages = messages;
@@ -81,7 +83,7 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
     @Override
     public void onBindViewHolder(MessagesListAdapter.ViewHolder holder, int position) {
 
-        UserMessage message = _messages[position];
+        UserMessage message = _messages.get(position);
 
         ImageView avatarView = holder.avatar;
         TextView ownerView = holder.owner;
@@ -115,6 +117,6 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
 
 
     @Override
-    public int getItemCount() { return _messages.length; }
+    public int getItemCount() { return _messages.size(); }
 
 }
