@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+
+        android:id="@+id/companionAvatar"
+        android:adjustViewBounds="true"
+        android:layout_height="70dp"
+        android:layout_width="70dp"
+
+        android:scaleType="centerCrop"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+
+        />
+
+    <TextView
+
+        android:id="@+id/companionName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:gravity="start"
+
+        android:ellipsize="end"
+        android:maxLines="1"
+
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@id/companionAvatar"
+        android:layout_marginTop="20dp"
+
+        >
+    </TextView>
+
+
+
+
+
+
+
+
+    <TextView
+
+        android:id="@+id/messageText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal = "true"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:gravity="start"
+
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+
+        android:layout_toRightOf="@id/companionAvatar"
+        android:layout_below="@id/companionName"
+        android:layout_marginTop="15dp"
+        android:inputType="none"
+
+        >
+    </TextView>
+
+
+
+
+</RelativeLayout>

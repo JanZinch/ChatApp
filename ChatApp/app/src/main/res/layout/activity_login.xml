@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    tools:context=".LoginActivity">
+
+
+    <EditText
+
+        android:id="@+id/login_field"
+
+        android:layout_centerHorizontal="true"
+
+        android:hint="@string/login"
+        android:inputType="text"
+
+        style="@style/text_field_normal"
+
+        >
+    </EditText>
+
+    <EditText
+
+        android:id="@+id/password_field"
+
+        android:layout_centerHorizontal="true"
+        style="@style/text_field_normal"
+        android:hint="@string/password"
+
+        android:inputType="textPassword"
+
+        android:layout_below="@+id/login_field"
+        android:layout_marginTop="20dp"
+
+        >
+    </EditText>
+
+    <TextView
+
+        android:id="@+id/result_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textSize="25sp"
+        android:textColor="@color/red"
+
+        android:text = "1123ABC"
+
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/password_field"
+        android:layout_centerHorizontal = "true"
+
+
+        >
+
+    </TextView>
+
+
+    <Button
+
+        android:id="@+id/sign_in_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/result_msg"
+        android:background="@drawable/buttons_style"
+
+        android:text="sign in"
+
+        >
+
+
+    </Button>
+
+    <Button
+
+        android:id="@+id/sign_up_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sign_in_btn"
+        android:background="@drawable/buttons_style"
+
+        android:text="sign up"
+
+        >
+
+
+    </Button>
+
+
+</RelativeLayout>
