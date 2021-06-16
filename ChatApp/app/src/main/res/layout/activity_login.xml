@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,88 +11,131 @@
     tools:context=".LoginActivity">
 
 
-    <EditText
-
-        android:id="@+id/login_field"
-
-        android:layout_centerHorizontal="true"
-
-        android:hint="@string/login"
-        android:inputType="text"
-
-        style="@style/text_field_normal"
-
-        >
-    </EditText>
-
-    <EditText
-
-        android:id="@+id/password_field"
-
-        android:layout_centerHorizontal="true"
-        style="@style/text_field_normal"
-        android:hint="@string/password"
-
-        android:inputType="textPassword"
-
-        android:layout_below="@+id/login_field"
-        android:layout_marginTop="20dp"
-
-        >
-    </EditText>
-
-    <TextView
-
-        android:id="@+id/result_msg"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:textSize="25sp"
-        android:textColor="@color/red"
-
-        android:text = "1123ABC"
-
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/password_field"
-        android:layout_centerHorizontal = "true"
-
-
-        >
-
-    </TextView>
-
-
-    <Button
-
-        android:id="@+id/sign_in_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/result_msg"
-        android:background="@drawable/buttons_style"
-
-        android:text="sign in"
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
         >
 
 
-    </Button>
+        <EditText
 
-    <Button
+            android:id="@+id/login_field"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
 
-        android:id="@+id/sign_up_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/sign_in_btn"
-        android:background="@drawable/buttons_style"
+            android:autofillHints="Login"
+            style="@style/text_field_normal"
+            android:gravity="start"
+            android:hint="@string/login"
+            android:inputType="text"
 
-        android:text="sign up"
+            android:layout_marginTop="20dp"
 
-        >
+            >
+        </EditText>
+
+        <EditText
+
+            android:id="@+id/password_field"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+            style="@style/text_field_normal"
+            android:gravity="start"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+
+            android:layout_marginTop="20dp"
+
+            >
+        </EditText>
 
 
-    </Button>
+
+        <TextView
+
+            android:id="@+id/result_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:textSize="18sp"
+            android:textColor="@color/red"
+
+            android:layout_marginTop="20dp"
+
+            >
+
+        </TextView>
 
 
-</RelativeLayout>
+        <Button
+
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:textSize="12sp"
+            android:text="Sign in"
+            android:textColor="@color/white"
+
+            android:layout_marginTop="20dp"
+
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            >
+
+
+        </Button>
+
+        <Button
+
+            android:id="@+id/sign_up_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:textSize="12sp"
+            android:text="Sign up"
+            android:textColor="@color/white"
+
+            android:layout_marginTop="10dp"
+
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            >
+
+
+        </Button>
+
+        <ToggleButton
+
+            android:id="@+id/localeToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:checked="false"
+            android:textOff="ENG"
+            android:textOn="BEL"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

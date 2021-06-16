@@ -56,8 +56,8 @@ public class MessagesListActivity extends AppCompatActivity {
 
         try{
 
-            AppResources.dbRef = AppResources.database.getReference("message").push();
-            AppResources.dbRef.setValue(message);
+            AppResources.messagesDBRef = AppResources.database.getReference("message").push();
+            AppResources.messagesDBRef.setValue(message);
             //AppResources.dbRef.child("owner").setValue(message.owner);
             //AppResources.dbRef.child("avatarUri").setValue(message.avatarUri);
             //AppResources.dbRef.child("text").setValue(message.text);
@@ -100,8 +100,9 @@ public class MessagesListActivity extends AppCompatActivity {
 
         try{
 
-            AppResources.dbRef = AppResources.database.getReference("message");
+            AppResources.messagesDBRef = AppResources.database.getReference("message");
             _messages = new LinkedList<>();
+
 
 
             InitMessageListView();
@@ -152,16 +153,15 @@ public class MessagesListActivity extends AppCompatActivity {
 
 
 
-        AppResources.dbRef.addChildEventListener(new ChildEventListener() {
+        AppResources.messagesDBRef.addChildEventListener(new ChildEventListener() {
 
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                Debug.Log("MSG ADDED");
+
                 UserMessage um = snapshot.getValue(UserMessage.class);
                 _messages.addLast(um);
                 UpdateMessageListView();
-                Debug.Log("SUCCESSFULL: " + um);
             }
 
             @Override
@@ -184,6 +184,8 @@ public class MessagesListActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }

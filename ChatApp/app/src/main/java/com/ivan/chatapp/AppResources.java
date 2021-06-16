@@ -18,6 +18,8 @@ public class AppResources {
     public static final int MAX_MESSAGE_SIZE = 1000;
 
     public static FirebaseDatabase database = null;
-    public static DatabaseReference dbRef = null;
+    public static DatabaseReference messagesDBRef = null;
+    public static DatabaseReference usersDBRef = null;
+
 
 }

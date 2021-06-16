@@ -7,11 +7,11 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class User {
 
-    public final String name;
-    public final String login;
-    public final String password;
-    public final UserAccessLevel accessLevel;
-    public final String avatar;
+    public String name;
+    public String login;
+    public String password;
+    public UserAccessLevel accessLevel;
+    public String avatar;
 
     public User(){
 
