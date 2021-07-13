@@ -21,5 +21,6 @@ public class AppResources {
     public static DatabaseReference messagesDBRef = null;
     public static DatabaseReference usersDBRef = null;
 
+    public static int startMessage = 0;
 
 }

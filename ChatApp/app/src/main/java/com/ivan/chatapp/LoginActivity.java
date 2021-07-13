@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
 
 
+    //public volatile static String startMessage = null;
 
     private Button _signInBtn;
     private Button _signUpBtn;
@@ -75,7 +76,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
 
         _signInBtn = findViewById(R.id.sign_in_button);
@@ -108,7 +111,18 @@ public class LoginActivity extends AppCompatActivity {
 
         _signUpBtn.setOnClickListener(v->{
 
-            startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
         });
     }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        if (AppResources.startMessage == 1) Toast.makeText(getApplicationContext(), AppResources.startMessage, Toast.LENGTH_SHORT).show();
+        Debug.Log("STR: " + AppResources.startMessage);
+        //startMessage = null;
+    }
+
+
 }

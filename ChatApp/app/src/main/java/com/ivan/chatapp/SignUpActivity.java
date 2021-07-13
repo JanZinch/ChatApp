@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Instrumentation;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.SharedLibraryInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SharedMemory;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Button;
@@ -19,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -44,61 +49,49 @@ public class SignUpActivity extends AppCompatActivity {
 
     protected void AddUserToDatabase(User newUser, FirebaseCallback callback) {
 
-        Query query = AppResources.usersDBRef.orderByChild("login").equalTo(newUser.login);
+        Debug.Log("Login: " + newUser.login);
 
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        Query query = AppResources.usersDBRef.orderByChild("login").equalTo(newUser.login.trim());
 
+
+        query.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
 
-                try{
+                if(!task.isSuccessful()) return;
 
-                    Debug.Log("IN!");
+                if (!task.getResult().exists()) {
 
-                    if (!snapshot.exists()){
+                    Debug.Log("EX!");
+                    //AppResources.usersDBRef.push().setValue(newUser);
+                    AppResources.usersDBRef = AppResources.database.getReference("user").push();
+                    AppResources.usersDBRef.child("name").setValue(newUser.name);
+                    AppResources.usersDBRef.child("avatar").setValue(newUser.avatar);
+                    AppResources.usersDBRef.child("login").setValue(newUser.login);
+                    AppResources.usersDBRef.child("password").setValue(newUser.password);
 
-                        //AppResources.usersDBRef.push().setValue(newUser);
-                        AppResources.usersDBRef = AppResources.database.getReference("user").push();
-                        AppResources.usersDBRef.child("name").setValue(newUser.name);
-                        AppResources.usersDBRef.child("avatar").setValue(newUser.avatar);
-                        AppResources.usersDBRef.child("login").setValue(newUser.login);
-                        AppResources.usersDBRef.child("password").setValue(newUser.password);
+                    if(newUser.accessLevel == UserAccessLevel.USER){
 
-                        if(newUser.accessLevel == UserAccessLevel.USER){
-
-                            AppResources.usersDBRef.child("access").setValue(0);
-                        }
-                        else {
-
-                            AppResources.usersDBRef.child("access").setValue(1);
-                        }
-
-                        Toast.makeText(getApplicationContext(), "User added.", Toast.LENGTH_SHORT).show();
+                        AppResources.usersDBRef.child("access").setValue(0);
                     }
                     else {
 
-                        Toast.makeText(getApplicationContext(), "This login already exists.", Toast.LENGTH_SHORT).show();
+                        AppResources.usersDBRef.child("access").setValue(1);
                     }
 
-                    callback.OnCallback(true);
-
-                }catch (Exception ex){
-
-                    Debug.Log(ex.getMessage());
+                    Toast.makeText(getApplicationContext(), "User added.", Toast.LENGTH_SHORT).show();
                 }
+                else {
 
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-                Toast.makeText(getApplicationContext(), "Error! Server not responding.", Toast.LENGTH_SHORT).show();
+                    Debug.Log("NONE!: " + task.getResult().getValue(User.class).toString());
+                    Toast.makeText(getApplicationContext(), "This login already exists.", Toast.LENGTH_SHORT).show();
+                }
 
                 callback.OnCallback(true);
             }
         });
+
+
 
         Debug.Log("LOG2");
 
@@ -163,6 +156,9 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onStart() {
 
         super.onStart();
+        AppResources.startMessage = 1;
+        //Debug.Log(AppResources.startMessage);
+
 
         AppResources.usersDBRef = AppResources.database.getReference("user");
 
@@ -176,6 +172,8 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         enterButton.setOnClickListener(v->{
+
+            //finish();
 
             String loginText = login.getText().toString();
             String passwordText = password.getText().toString();
@@ -203,16 +201,14 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void OnCallback(boolean result) {
 
-                    Debug.Log("LOG3");
+                    //LoginActivity.startMessage = "User added.";
                     //new Instrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
+
+                    finishAffinity();
+
                 }
             });
 
-
-
-            //Debug.Log("LOG4");
-
-            //startActivity(new Intent(getApplicationContext(), MessagesListActivity.class));
 
         });
 
