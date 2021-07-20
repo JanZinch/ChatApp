@@ -9,14 +9,14 @@
 
         android:id="@+id/companionAvatar"
         android:adjustViewBounds="true"
-        android:layout_height="80dp"
-        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:layout_width="70dp"
 
         android:scaleType="centerCrop"
 
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
 
         />
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
 
         android:textColor="@color/teal_700"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:gravity="start"
 
         android:ellipsize="end"
@@ -36,7 +36,7 @@
 
         android:layout_marginRight="20dp"
         android:layout_toRightOf="@id/companionAvatar"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
 
         >
     </TextView>
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal = "true"
         android:textColor="@color/black"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:gravity="start"
 
         android:layout_marginRight="20dp"
@@ -57,7 +57,7 @@
 
         android:layout_toRightOf="@id/companionAvatar"
         android:layout_below="@id/companionName"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:inputType="none"
 
         >

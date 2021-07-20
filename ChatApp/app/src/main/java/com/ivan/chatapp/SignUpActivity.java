@@ -53,16 +53,18 @@ public class SignUpActivity extends AppCompatActivity {
 
         Query query = AppResources.usersDBRef.orderByChild("login").equalTo(newUser.login.trim());
 
-
         query.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
 
-                if(!task.isSuccessful()) return;
+                if(!task.isSuccessful()){
 
-                if (!task.getResult().exists()) {
+                    resultMessage.setText(task.getException().getMessage());
+                    return;
+                }
+                else if (!task.getResult().exists()) {
 
-                    Debug.Log("EX!");
+                    //Debug.Log("EX!");
                     //AppResources.usersDBRef.push().setValue(newUser);
                     AppResources.usersDBRef = AppResources.database.getReference("user").push();
                     AppResources.usersDBRef.child("name").setValue(newUser.name);
@@ -83,17 +85,13 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 else {
 
-                    Debug.Log("NONE!: " + task.getResult().getValue(User.class).toString());
-                    Toast.makeText(getApplicationContext(), "This login already exists.", Toast.LENGTH_SHORT).show();
+                    //Debug.Log("NONE!: " + task.getResult().getValue(User.class).toString());
+                    resultMessage.setText("This login already exists.");
                 }
 
                 callback.OnCallback(true);
             }
         });
-
-
-
-        Debug.Log("LOG2");
 
     }
 

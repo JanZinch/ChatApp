@@ -19,9 +19,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-
-    //public volatile static String startMessage = null;
-
     private Button _signInBtn;
     private Button _signUpBtn;
     private EditText loginField;
@@ -30,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     protected void SignIn(User inputData){
-
 
         Query query = AppResources.usersDBRef.orderByChild("login").equalTo(inputData.login);
 

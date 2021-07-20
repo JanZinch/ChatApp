@@ -20,11 +20,40 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name= "android:layout_weight">1</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:background">@drawable/text_fields_style</item>
 
         <item name = "android:paddingLeft">10dp</item>
+        <item name = "android:paddingRight">1dp</item>
+
+    </style>
+
+    <style name="text_field_large">
+
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name= "android:layout_weight">1</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/text_fields_style</item>
+
+        <item name = "android:paddingLeft">10dp</item>
+        <item name = "android:paddingRight">1dp</item>
+
+    </style>
+
+
+    <style name="text_field_small">
+
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name= "android:layout_weight">1</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/text_fields_style</item>
+
+        <item name = "android:paddingLeft">12dp</item>
         <item name = "android:paddingRight">1dp</item>
 
     </style>
