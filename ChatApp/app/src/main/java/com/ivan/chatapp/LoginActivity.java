@@ -111,6 +111,8 @@ public class LoginActivity extends AppCompatActivity {
 
         _signUpBtn.setOnClickListener(v->{
 
+            //startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+            //startActivityForResult(new Intent(getApplicationContext(), SignUpActivity.class), 0);
             startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
         });
     }
@@ -119,8 +121,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
-        if (AppResources.startMessage == 1) Toast.makeText(getApplicationContext(), AppResources.startMessage, Toast.LENGTH_SHORT).show();
-        Debug.Log("STR: " + AppResources.startMessage);
+        //if (AppResources.startMessage == 1) Toast.makeText(getApplicationContext(), AppResources.startMessage, Toast.LENGTH_SHORT).show();
+        //Debug.Log("STR: " + AppResources.startMessage);
         //startMessage = null;
     }
 

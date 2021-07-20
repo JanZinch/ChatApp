@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    tools:context=".LoginActivity">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        >
+
+
+        <EditText
+
+            android:id="@+id/login_field"
+            android:layout_width="400dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+            android:autofillHints="Login"
+            style="@style/text_field_xlarge"
+            android:gravity="start"
+            android:hint="@string/login"
+            android:inputType="text"
+
+            android:layout_marginTop="20dp"
+
+            >
+        </EditText>
+
+        <EditText
+
+            android:id="@+id/password_field"
+            android:layout_width="400dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+            style="@style/text_field_xlarge"
+            android:gravity="start"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+
+            android:layout_marginTop="20dp"
+
+            >
+        </EditText>
+
+
+
+        <TextView
+
+            android:id="@+id/result_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:textSize="23sp"
+            android:textColor="@color/red"
+
+            android:layout_marginTop="20dp"
+
+            >
+
+        </TextView>
+
+
+        <Button
+
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:textSize="20sp"
+            android:text="Sign in"
+            android:textColor="@color/white"
+
+            android:layout_marginTop="20dp"
+
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            >
+
+
+        </Button>
+
+        <Button
+
+            android:id="@+id/sign_up_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:textSize="20sp"
+            android:text="Sign up"
+            android:textColor="@color/white"
+
+            android:layout_marginTop="10dp"
+
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            >
+
+
+        </Button>
+
+        <ToggleButton
+
+            android:id="@+id/localeToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:checked="false"
+            android:textOff="ENG"
+            android:textOn="BEL"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -79,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
                         AppResources.usersDBRef.child("access").setValue(1);
                     }
 
-                    Toast.makeText(getApplicationContext(), "User added.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "User " + newUser.name + " added.", Toast.LENGTH_SHORT).show();
                 }
                 else {
 
@@ -156,9 +156,6 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onStart() {
 
         super.onStart();
-        AppResources.startMessage = 1;
-        //Debug.Log(AppResources.startMessage);
-
 
         AppResources.usersDBRef = AppResources.database.getReference("user");
 
@@ -172,8 +169,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         enterButton.setOnClickListener(v->{
-
-            //finish();
 
             String loginText = login.getText().toString();
             String passwordText = password.getText().toString();
@@ -195,7 +190,6 @@ public class SignUpActivity extends AppCompatActivity {
 
             MessagesListActivity.currentUser = new User(nameText, loginText, passwordText, currentPictureUri, UserAccessLevel.USER);
 
-            Debug.Log("LOG1");
 
             AddUserToDatabase(MessagesListActivity.currentUser, new FirebaseCallback() {
                 @Override
@@ -204,42 +198,20 @@ public class SignUpActivity extends AppCompatActivity {
                     //LoginActivity.startMessage = "User added.";
                     //new Instrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
 
-                    finishAffinity();
+                    try{
+
+                        finish();
+
+                    }
+                    catch(Exception ex){
+
+                        Debug.Log(ex.getMessage());
+                    }
 
                 }
             });
 
-
         });
-
-        AppResources.usersDBRef.addChildEventListener(new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
 
     }
 }
