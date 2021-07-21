@@ -1,2 +1,2 @@
 # ChatApp
- App
+Android application for internet correspondence between users 
